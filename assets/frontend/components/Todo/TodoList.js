@@ -53,14 +53,14 @@ const TodoList = (props) =>{
         return (
             <div>
                 {items.map((item) => (
-                    <Grid container spacing={3} className="list-group-item" key={item.id}>
-                        <Grid item xs={3}>
-                            name:<Button  variant="outlined" color="primary">{item.title}</Button>
+                    <Grid container spacing={1} className="list-group-item" key={item.id}>
+                        <Grid item xs={4}>
+                            <Button  variant="outlined" color="primary">{item.title}</Button>
                         </Grid>
-                        <Grid item xs={3}>
-                            status:<Button  variant="outlined" color="secondary">{item.status}</Button>
+                        <Grid item xs={4}>
+                            <Button  variant="outlined" color="secondary">{item.status}</Button>
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={4}>
                             <EmojiPeopleRoundedIcon />:{getUserName(item.userOwner)}
                         </Grid>
                     </Grid>
@@ -106,6 +106,19 @@ const TodoList = (props) =>{
                           >
                             <Grid item xs={12} sm={6}>
                                 <Paper className={classes.paper}>All Tasks</Paper>
+                                <Paper className={classes.paper}>
+                                    <Grid container spacing={2} className="list-group-item" >
+                                        <Grid item xs={4}>
+                                            name
+                                        </Grid>
+                                        <Grid item xs={4}>
+                                            status
+                                        </Grid>
+                                        <Grid item xs={4}>
+                                            owner
+                                        </Grid>
+                                    </Grid>
+                                </Paper>
                                 <Paper className={classes.paper}>{renderTodos()}</Paper>
                             </Grid>
                         </Grid>

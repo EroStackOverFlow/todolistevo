@@ -140,19 +140,19 @@ const TodoList = (props) =>{
                     {items.map((item) => (
                             <Grid container spacing={3} className="list-group-item" key={item.id}>
                                 <Grid item xs={3}>
-                                    name:<Button  variant="outlined" color="primary">{item.title}</Button>
+                                    <Button  variant="outlined" color="primary">{item.title}</Button>
                                 </Grid>
                                 <Grid item xs={3}>
-                                    status:<Button  variant="outlined" color="secondary">{item.status}</Button>
+                                    <Button  variant="outlined" color="secondary">{item.status}</Button>
                                 </Grid>
                                 <Grid item xs={2}>
                                     <EmojiPeopleRoundedIcon />:{getUserName(item.userOwner)}
                                 </Grid>
                                 <Grid item xs={2}>
-                                    edit status:<EditRoundedIcon onClick={() =>editTodo(item.id)} />
+                                    <EditRoundedIcon onClick={() =>editTodo(item.id)} />
                                 </Grid>
                                 <Grid item xs={2}>
-                                    delete:<DeleteForeverIcon onClick={() =>deleteTodo(item.id)} />
+                                    <DeleteForeverIcon onClick={() =>deleteTodo(item.id)} />
                                 </Grid>
                             </Grid>
                         )
@@ -217,6 +217,7 @@ const TodoList = (props) =>{
                             <Grid item xs={6}>
                                   <Paper className={classes.paper}>Add a task</Paper>
                             </Grid>
+
                         </Grid>
                         <Grid
                             container
@@ -261,6 +262,25 @@ const TodoList = (props) =>{
                           >
                             <Grid item xs={12} sm={6}>
                                 <Paper className={classes.paper}>All Tasks</Paper>
+                                <Paper className={classes.paper}>
+                                    <Grid container spacing={2} className="list-group-item" >
+                                        <Grid item xs={3}>
+                                            name
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            status
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            owner
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            edit status
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            delete
+                                        </Grid>
+                                    </Grid>
+                                </Paper>
                                 <Paper className={classes.paper}>{renderTodos()}</Paper>
                             </Grid>
                         </Grid>
