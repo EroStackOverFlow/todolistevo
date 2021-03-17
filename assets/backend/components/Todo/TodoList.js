@@ -8,7 +8,6 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import EmojiPeopleRoundedIcon from '@material-ui/icons/EmojiPeopleRounded';
 import Button from '@material-ui/core/Button';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 
 
@@ -33,18 +32,13 @@ const TodoList = (props) =>{
     const { users } = usersData;
     const { items } = itemsData;
 
-
     const [todoData, setTodoData] = useState(data);
 
-
     const { title, status, owner, } = todoData;
-
 
     const handleChange = (event) => {
         setTodoData({...todoData, [event.target.id]: event.target.value});
     }
-
-
 
     const onSubmit =() => {
         if(status === '' || title === '' || owner === ''){
@@ -144,13 +138,23 @@ const TodoList = (props) =>{
             return (
                 <div>
                     {items.map((item) => (
-                            <div className="list-group-item" key={item.id}>
-                                name:<Button  variant="outlined" color="primary">{item.title}</Button>|
-                                status:<Button  variant="outlined" color="secondary">{item.status}</Button>|
-                                <EmojiPeopleRoundedIcon />:{getUserName(item.userOwner)}|
-                                edit status:<EditRoundedIcon onClick={() =>editTodo(item.id)} />|
-                                delete:<DeleteForeverIcon onClick={() =>deleteTodo(item.id)} />|
-                            </div>
+                            <Grid container spacing={3} className="list-group-item" key={item.id}>
+                                <Grid item xs={3}>
+                                    name:<Button  variant="outlined" color="primary">{item.title}</Button>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    status:<Button  variant="outlined" color="secondary">{item.status}</Button>
+                                </Grid>
+                                <Grid item xs={2}>
+                                    <EmojiPeopleRoundedIcon />:{getUserName(item.userOwner)}
+                                </Grid>
+                                <Grid item xs={2}>
+                                    edit status:<EditRoundedIcon onClick={() =>editTodo(item.id)} />
+                                </Grid>
+                                <Grid item xs={2}>
+                                    delete:<DeleteForeverIcon onClick={() =>deleteTodo(item.id)} />
+                                </Grid>
+                            </Grid>
                         )
                     )}
                 </div>
@@ -189,7 +193,7 @@ const TodoList = (props) =>{
 
     useEffect(() => {
         if (CookieService.get('name') == null)
-            props.history.push('/backend/login');
+            props.history.push('/backend/backend');
         taskDidMount();
         userDidMount();
     },[]);
@@ -199,7 +203,7 @@ const TodoList = (props) =>{
                 <div className={classes.root} >
                     <Grid container spacing={3}>
                         <Grid item xs={3}>
-                            <Button onClick={signOut} variant="contained" color="secondary" className={classes.button} startIcon={<DeleteIcon />} >sign out</Button>
+                            <Button onClick={signOut} variant="contained" color="secondary" className={classes.button} >sign out</Button>
                         </Grid>
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>Connected as {CookieService.get('name')} Role: {CookieService.get('role')}</Paper>

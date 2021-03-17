@@ -5,6 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import EmojiPeopleRoundedIcon from "@material-ui/icons/EmojiPeopleRounded";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 
 
@@ -24,7 +26,6 @@ const TodoList = (props) =>{
     const { users } = usersData;
     const { items } = itemsData;
 
-
     const taskDidMount = () => {
         axios.get(`https://localhost:8000/api/tasks`)
             .then(res => {
@@ -41,7 +42,6 @@ const TodoList = (props) =>{
 
     const getUserName = (id) =>{
         for(let user of users){
-            console.log(user.name);
             if(id === "/api/users/"+user.id){
                 return (user.name);
             }
@@ -53,11 +53,17 @@ const TodoList = (props) =>{
         return (
             <div>
                 {items.map((item) => (
-                        <div className="list-group-item" key={item.id}>
-                            name:<Button  variant="outlined" color="primary">{item.title}</Button>|
-                            status:<Button  variant="outlined" color="secondary">{item.status}</Button>|
-                            <EmojiPeopleRoundedIcon />: {getUserName(item.userOwner)}|
-                        </div>
+                    <Grid container spacing={3} className="list-group-item" key={item.id}>
+                        <Grid item xs={3}>
+                            name:<Button  variant="outlined" color="primary">{item.title}</Button>
+                        </Grid>
+                        <Grid item xs={3}>
+                            status:<Button  variant="outlined" color="secondary">{item.status}</Button>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <EmojiPeopleRoundedIcon />:{getUserName(item.userOwner)}
+                        </Grid>
+                    </Grid>
                     )
                 )}
             </div>
